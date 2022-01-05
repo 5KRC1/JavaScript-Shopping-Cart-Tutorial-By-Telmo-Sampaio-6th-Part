@@ -90,7 +90,7 @@ function removeAll() {
 }
 ```
 
-and add it to icons (replace nameOfFunction() for the name of function you want to be run on click)
+and add it to icons (replace "nameOfFunction()" for the name of function you want to be run on click)
 
 ```html
 <!--if function has no parameters-->
