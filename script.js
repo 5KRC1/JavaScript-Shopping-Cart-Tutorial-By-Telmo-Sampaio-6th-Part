@@ -194,10 +194,10 @@ function removeOne(tag){
      //gets the correct item
      var item = cart[tag]
  
-     delete cart[tag]
-     localStorage.setItem("productsInCart", JSON.stringify(cart));
      localStorage.setItem("totalCost", totalPrice - (parseFloat(item.price) * parseInt(item.inCart)))
      localStorage.setItem("cartNumbers", N - parseInt(item.inCart))
+     delete cart[tag]
+     localStorage.setItem("productsInCart", JSON.stringify(cart));
      location.reload();
  }
  
