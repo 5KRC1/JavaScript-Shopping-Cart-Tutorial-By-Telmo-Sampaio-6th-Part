@@ -16,10 +16,10 @@ First, the thing that made me feel stupid and stuck in debugging for few days, h
 3. Thirdly we make the edit buttons. You need three functions like shown below (just add them above the function "displayCart()")
 
 ```
-function addOne(tag){
+function addOne(){
     console.log("addOne")
 }
-function removeOne(tag){
+function removeOne(){
     console.log("removeOne")
 }
 function removeAll(){
