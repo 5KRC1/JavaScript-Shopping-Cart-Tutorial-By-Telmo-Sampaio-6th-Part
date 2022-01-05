@@ -148,7 +148,7 @@
 function removeOne(tag){
      //gets data from localstorage
      var cart = JSON.parse(localStorage.getItem("productsInCart"));
-     var totalPrice = parseInt(localStorage.getItem("totalCost"));
+     var totalPrice = parseFloat(localStorage.getItem("totalCost"));
      var N = parseInt(localStorage.getItem("cartNumbers"));
      var i = 0;
 
@@ -197,9 +197,23 @@ function addOne(tag){
      location.reload();
 }
 function removeAll(tag){
-     localStorage.removeItem("productsInCart");
-     localStorage.removeItem("totalCost")
-     localStorage.removeItem("cartNumbers")
+     //gets data from localstorage
+     var cart = JSON.parse(localStorage.getItem("productsInCart"));
+     var totalPrice = parseFloat(localStorage.getItem("totalCost"));
+     var N = parseInt(localStorage.getItem("cartNumbers"));
+     var i = 0;
+
+     //gets the correct item
+     while (i < cart.length){
+          if (tag == cart[i].tag){
+               var item = cart[i]
+          }
+          i++;
+     }
+
+     localStorage.setItem("productsInCart", cart.pop(item));
+     localStorage.setItem("totalCost", totalPrice - (parseFloat(item.price) * parseInt(item.inCart)))
+     localStorage.setItem("cartNumbers", N - parseInt(item.inCart))
      location.reload();
 }
 

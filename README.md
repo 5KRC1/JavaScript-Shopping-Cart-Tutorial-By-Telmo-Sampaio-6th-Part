@@ -82,10 +82,27 @@ function addOne(tag) {
   localStorage.setItem("cartNumbers", N + 1);
   location.reload();
 }
-function removeAll() {
-  localStorage.removeItem("productsInCart");
-  localStorage.removeItem("totalCost");
-  localStorage.removeItem("cartNumbers");
+function removeAll(tag) {
+  //gets data from localstorage
+  var cart = JSON.parse(localStorage.getItem("productsInCart"));
+  var totalPrice = parseFloat(localStorage.getItem("totalCost"));
+  var N = parseInt(localStorage.getItem("cartNumbers"));
+  var i = 0;
+
+  //gets the correct item
+  while (i < cart.length) {
+    if (tag == cart[i].tag) {
+      var item = cart[i];
+    }
+    i++;
+  }
+
+  localStorage.setItem("productsInCart", cart.pop(item));
+  localStorage.setItem(
+    "totalCost",
+    totalPrice - parseFloat(item.price) * parseInt(item.inCart)
+  );
+  localStorage.setItem("cartNumbers", N - parseInt(item.inCart));
   location.reload();
 }
 ```
@@ -93,9 +110,6 @@ function removeAll() {
 and add it to icons (replace "nameOfFunction()" for the name of function you want to be run on click)
 
 ```html
-<!--if function has no parameters-->
-<ion-icon onclick="nameOfFunction()" />
-<!--if function has parameters like "addOne(tag)"-->
 <ion-icon onclick="nameOfFunction('${item.tag}')" />
 ```
 
