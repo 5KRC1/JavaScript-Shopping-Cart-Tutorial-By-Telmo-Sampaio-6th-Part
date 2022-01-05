@@ -196,7 +196,7 @@ function addOne(tag){
      localStorage.setItem("cartNumbers", N + 1)
      location.reload();
 }
-function removeAll(){
+function removeAll(tag){
      localStorage.removeItem("productsInCart");
      localStorage.removeItem("totalCost")
      localStorage.removeItem("cartNumbers")
@@ -216,7 +216,7 @@ function displayCart(){
           Object.values(cartItems).map(item => {
                productContainer.innerHTML += `
                <div class="product">
-                    <button type="button" onclick="removeAll()"><ion-icon name="close-circle"></ion-icon></button>
+                    <button type="button" onclick="removeAll('${item.tag}')"><ion-icon name="close-circle"></ion-icon></button>
                     <img src="../img/${item.tag}.png">
                     <span>${item.name}</span>
                </div>
