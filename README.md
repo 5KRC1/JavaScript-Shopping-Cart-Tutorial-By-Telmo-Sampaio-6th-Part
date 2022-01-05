@@ -27,7 +27,7 @@ function removeAll(){
 }
 ```
 
-##### After adding them make sure they work by opening console and seeing if buttons display the text when pressed.
+##### After adding them make sure they work by adding onclick to ion-icons, opening console and seeing if buttons display the text when pressed.
 
 4. Lastly we make functions do stuff and make them run on click of icons like in code below
 
