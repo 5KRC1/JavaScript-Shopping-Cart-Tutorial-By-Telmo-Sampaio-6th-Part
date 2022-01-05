@@ -103,4 +103,4 @@ and voila it works :)
 
 ### EXPLANATION
 
-In functions you can see I am firstly geting the data already stored there, then modifying the data and lastly storing the new data instead of the old.
+In functions you can see I am firstly geting the data already stored there, then modifying the data and lastly storing the new data instead of the old. And you must make sure to also refresh the page to display the new data afterwards with "location.reload()".
