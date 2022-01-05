@@ -150,76 +150,60 @@ function removeOne(tag){
      var cart = JSON.parse(localStorage.getItem("productsInCart"));
      var totalPrice = parseFloat(localStorage.getItem("totalCost"));
      var N = parseInt(localStorage.getItem("cartNumbers"));
-     var i = 0;
-
+ 
      //gets the correct item
-     while (i < cart.length){
-          if (tag == cart[i].tag){
-               var item = cart[i]
-          }
-          i++;
-     }
-
+     var item = cart[tag]
+ 
      //changes values of cart items
      if (item.inCart > 1){
-          item.inCart--
-          localStorage.setItem("productsInCart", JSON.stringify(cart));
+         item.inCart--
+         localStorage.setItem("productsInCart", JSON.stringify(cart));
      }
      else{
-          localStorage.setItem("productsInCart", JSON.stringify(cart.pop(item)));
+         delete cart[tag];
+         localStorage.setItem("productsInCart", JSON.stringify(cart));
      }
-
+ 
      //changes total price and total number of products
      localStorage.setItem("totalCost", totalPrice - parseFloat(item.price));
      localStorage.setItem("cartNumbers", N - 1);
      location.reload();
-}
-function addOne(tag){
+ }
+ function addOne(tag){
      //gets data from localstorage
      var cart = JSON.parse(localStorage.getItem("productsInCart"));
      var totalPrice = parseFloat(localStorage.getItem("totalCost"));
      var N = parseInt(localStorage.getItem("cartNumbers"));
-     var i = 0;
-
+ 
      //gets the correct item
-     while (i < cart.length){
-          if (tag == cart[i].tag){
-               var item = cart[i]
-          }
-          i++;
-     }
-
+     var item = cart[tag];
+ 
      //change values
      item.inCart++; //adds one more inCart
      localStorage.setItem("productsInCart", JSON.stringify(cart));
-     localStorage.setItem("totalCost", totalPrice + parseFloat(item.price))
-     localStorage.setItem("cartNumbers", N + 1)
+     localStorage.setItem("totalCost", totalPrice + parseFloat(item.price));
+     localStorage.setItem("cartNumbers", N + 1);
      location.reload();
-}
-function removeAll(tag){
+ }
+ function removeAll(tag){
      //gets data from localstorage
      var cart = JSON.parse(localStorage.getItem("productsInCart"));
      var totalPrice = parseFloat(localStorage.getItem("totalCost"));
      var N = parseInt(localStorage.getItem("cartNumbers"));
-     var i = 0;
-
+ 
      //gets the correct item
-     while (i < cart.length){
-          if (tag == cart[i].tag){
-               var item = cart[i]
-          }
-          i++;
-     }
-
-     localStorage.setItem("productsInCart", cart.pop(item));
+     var item = cart[tag]
+ 
+     delete cart[tag]
+     localStorage.setItem("productsInCart", JSON.stringify(cart));
      localStorage.setItem("totalCost", totalPrice - (parseFloat(item.price) * parseInt(item.inCart)))
      localStorage.setItem("cartNumbers", N - parseInt(item.inCart))
      location.reload();
-}
-
-
-//to your icons add the above functions (watch <ion-icon>) with onClick=''
-function displayCart(){
+ }
+ 
+ 
+ //to your icons add the above functions (watch <ion-icon>) with onClick=''
+ function displayCart(){
      let cartItems = localStorage.getItem("productsInCart");
      cartItems = JSON.parse(cartItems);
      let productContainer = document.querySelector(".products");
@@ -245,7 +229,7 @@ function displayCart(){
                </div>
                `;
           });
-
+ 
           productContainer.innerHTML += `
                <div class="cartTotalContainer">
                     <h3 class="cartTotalTitle">
@@ -255,9 +239,9 @@ function displayCart(){
                          $${cartCost}
                     </h3>
           `;
-
+ 
      }
-}
+ }
 
 // displayCart();
 
