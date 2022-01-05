@@ -100,3 +100,7 @@ and add it to icons (replace "nameOfFunction()" for the name of function you wan
 ```
 
 and voila it works :)
+
+### EXPLANATION
+
+In functions you can see I am firstly geting the data already stored there, then modifying the data and lastly storing the new data instead of the old.
