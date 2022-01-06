@@ -148,7 +148,7 @@
 function removeOne(tag){
      //gets data from localstorage
      var cart = JSON.parse(localStorage.getItem("productsInCart"));
-     var totalPrice = parseFloat(localStorage.getItem("totalCost"));
+     var totalPrice = parseInt(localStorage.getItem("totalCost")); //
      var N = parseInt(localStorage.getItem("cartNumbers"));
  
      //gets the correct item
@@ -165,14 +165,14 @@ function removeOne(tag){
      }
  
      //changes total price and total number of products
-     localStorage.setItem("totalCost", totalPrice - parseFloat(item.price));
+     localStorage.setItem("totalCost", totalPrice - item.price);
      localStorage.setItem("cartNumbers", N - 1);
      location.reload();
  }
  function addOne(tag){
      //gets data from localstorage
      var cart = JSON.parse(localStorage.getItem("productsInCart"));
-     var totalPrice = parseFloat(localStorage.getItem("totalCost"));
+     var totalPrice = parseInt(localStorage.getItem("totalCost"));
      var N = parseInt(localStorage.getItem("cartNumbers"));
  
      //gets the correct item
@@ -181,23 +181,24 @@ function removeOne(tag){
      //change values
      item.inCart++; //adds one more inCart
      localStorage.setItem("productsInCart", JSON.stringify(cart));
-     localStorage.setItem("totalCost", totalPrice + parseFloat(item.price));
+     localStorage.setItem("totalCost", totalPrice + item.price);
      localStorage.setItem("cartNumbers", N + 1);
      location.reload();
  }
  function removeAll(tag){
      //gets data from localstorage
      var cart = JSON.parse(localStorage.getItem("productsInCart"));
-     var totalPrice = parseFloat(localStorage.getItem("totalCost"));
+     var totalPrice = parseInt(localStorage.getItem("totalCost"));
      var N = parseInt(localStorage.getItem("cartNumbers"));
  
      //gets the correct item
      var item = cart[tag]
- 
-     localStorage.setItem("totalCost", totalPrice - (parseFloat(item.price) * parseInt(item.inCart)))
-     localStorage.setItem("cartNumbers", N - parseInt(item.inCart))
+     
+     //deletes the item
      delete cart[tag]
      localStorage.setItem("productsInCart", JSON.stringify(cart));
+     localStorage.setItem("totalCost", totalPrice - (item.price * item.inCart))
+     localStorage.setItem("cartNumbers", N - item.inCart)
      location.reload();
  }
  
